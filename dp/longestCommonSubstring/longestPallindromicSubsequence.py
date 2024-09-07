@@ -23,7 +23,7 @@ Explanation: As “BABCBAB” is the longest palindromic subsequence in it. “B
 # Case4: If there are more than two characters, and first and last characters are same
 # Else L(i, j) =  L(i + 1, j – 1) + 2 
 
-def longestPallindromicSubsequene(s1):
+def longestPalindromicSubsequence(s1):
     reverse_s1 = s1[::-1]
     n = len(s1)
     # m = len(reverse_s1)
@@ -44,5 +44,5 @@ def longestPallindromicSubsequene(s1):
 
 S = "GEEKSFORGEEKS"
 
-print("length of longest pallindrome string is ", longestPallindromicSubsequene(s1=S))
+print("length of longest pallindrome string is ", longestPalindromicSubsequence(s1=S))
         

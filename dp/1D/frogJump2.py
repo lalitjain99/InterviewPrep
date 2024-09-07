@@ -66,4 +66,47 @@ def frogJump_with_k_recur(heights,n):
 
 n,k = 5,3
 heights = [10, 30, 40, 50, 20]
-print("minimum energy spent with k jumps",frogJump_with_k_recur(heights,n-1))
+print("minimum energy spent with {k} jumps using recursive solution".format(k=k),frogJump_with_k_recur(heights,n-1))
+
+#Approach 2: recursion with memoization
+dp= [-1]*n
+def frogJump_with_k_memo(heights,n):
+
+    #base case : If the frog is at the last floor , no energy is exhasted
+    if n == 0:
+        return 0
+    #check if subproblem is already solved
+    if dp[n] != -1:
+        return dp[n]
+    
+    min_loss = float("inf")
+    for i in range(1,k+1):
+
+        if n-i>=0:
+            loss = frogJump_with_k_memo(heights,n-i) + abs(heights[n] - heights[n-i])
+
+            min_loss = min(loss,min_loss)
+            dp[n] = min_loss
+
+    return dp[n-1]
+
+n,k = 5,3
+heights = [10, 30, 40, 50, 20]
+print("minimum energy spent with {k} jumps using recursive and memoization".format(k=k),frogJump_with_k_memo(heights,n-1))
+
+
+def frogJump_tab(stones,n):
+    dp = [-1]*(n)
+    dp[0] = 0
+    for i in range(1,n):
+        min_loss = float('inf')
+        for j in range(1,k+1):
+            if i-j>=0:
+                loss = dp[i-j] + abs(stones[i]-stones[i-j])
+                min_loss = min(loss,min_loss)
+        dp[i] = min_loss
+    return dp[n-1]
+
+n,k = 5,3
+stones = [10, 30, 40, 50, 20]
+print("minimum energy spent with {k} jumps using tabulation".format(k=k),frogJump_tab(stones,n))

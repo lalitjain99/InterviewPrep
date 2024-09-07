@@ -15,6 +15,48 @@ Explanation: There are five solutions:
 {2,2,2,2,2}, {2,2,3,3}, {2,2,6}, {2,3,5} and {5,5}.
 
 """
+#Approach 1: Recursion
+def countCoinCombination(coins,n,target):
+    if n == 0:
+        if target % coins[n] == 0:
+            return 1
+        else:
+            return 0
+
+    notPick = countCoinCombination(coins,n-1,target)
+    pick = 0
+    if coins[n]<= target:
+        pick = countCoinCombination(coins,n,target-coins[n])
+
+    return pick + notPick
+
+coins = [2, 5, 3, 6]
+n= 4
+target = 10
+print("Recursion: Number of combination to get required amount",countCoinCombination(coins,n-1,target))
+
+#Approach 1: Recursion with tabulation
+def countCoinCombination_memo(coins,n,target):
+    if n == 0:
+        if target % coins[n] == 0:
+            return 1
+        else:
+            return 0
+    if dp[n][target] != -1:
+        return dp[n][target]
+    notPick = countCoinCombination_memo(coins,n-1,target)
+    pick = 0
+    if coins[n]<= target:
+        pick = countCoinCombination_memo(coins,n,target-coins[n])
+    dp[n][target] = pick + notPick
+    return dp[n][target]
+
+coins = [2, 5, 3, 6]
+n= 4
+target = 10
+dp = [[-1]*(target + 1) for _ in range(n+1)]
+print("Recursion with memoization: Number of combination to get required amount",countCoinCombination_memo(coins,n-1,target))
+#Approach 3: Tabulation
 
 def countCoinSet(coins:list, amount: int) -> int:
     N = len(coins)
@@ -41,4 +83,4 @@ def countCoinSet(coins:list, amount: int) -> int:
 sum = 10
 coins = [2, 5, 3, 6]
 
-print(countCoinSet(coins=coins,amount=sum))
+print("Tabulation: Number of combination to get required amount",countCoinSet(coins=coins,amount=sum))

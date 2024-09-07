@@ -14,6 +14,32 @@ Explanation:
 The optimal choice is to pick the 1st element 8 times.
 
 """
+# Approach 1: Recursive 
+
+def knapsack_with_duplicates_recursive(wt,val,N,W):
+
+    #base condition for the recursive solution
+    # if N==0 or W ==0:
+    #     return 0
+    if N == 1:
+        return (W//wt[N-1])*val[N-1]
+        
+    #if we are not considering this element even once
+    noPick = 0 + knapsack_with_duplicates_recursive(wt,val,N-1,W)
+    pick = float('-inf')
+    if wt[N-1]<= W:
+        pick = val[N-1] + knapsack_with_duplicates_recursive(wt,val,N,W-wt[N-1])
+    
+    return max(pick,noPick)
+
+
+N = 4
+W = 8
+val = [6, 1, 7, 7]
+wt = [1, 3, 4, 5]
+
+print('recursive solution',knapsack_with_duplicates_recursive(wt,val,N,W))
+
 #top down approach
 def knapsack_with_duplicates(wt,val,N,W):
     mtx = [[0 for i in range(W+1)] for j in range(N+1)]
@@ -35,28 +61,6 @@ W = 8
 val = [6, 1, 7, 7]
 wt = [1, 3, 4, 5]
 
-print("dynamic prog solution",knapsack_with_duplicates(wt,val,N,W))
+print("Tabulation",knapsack_with_duplicates(wt,val,N,W))
 
 
-#recursive approach
-def knapsack_with_duplicates_recursive(wt,val,N,W):
-
-    #base condition for the recursive solution
-    if N==0 or W ==0:
-        return 0
-    
-    #if we are not considering this element even once
-    if wt[N-1]<= W:
-        max_profit = max((val[N-1] + knapsack_with_duplicates_recursive(wt,val,N,W-wt[N-1])), knapsack_with_duplicates_recursive(wt,val,N-1,W))
-    else:
-        max_profit = knapsack_with_duplicates_recursive(wt,val,N-1,W)
-
-
-
-
-N = 4
-W = 8
-val = [6, 1, 7, 7]
-wt = [1, 3, 4, 5]
-
-print('recursive solution',knapsack_with_duplicates_recursive(wt,val,N,W))

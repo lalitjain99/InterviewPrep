@@ -43,7 +43,7 @@ def is_palindrome(arr,i,j):
 
         return True
 
-def palindromePartioning(arr,i,j):
+def palindromePartitioning(arr,i,j):
   
     if i>=j or is_palindrome(arr,i,j):
         return 0
@@ -51,7 +51,7 @@ def palindromePartioning(arr,i,j):
     _min = maxint
 
     for k in range(i,j):
-        temp = palindromePartioning(arr,i,k) + palindromePartioning(arr,k+1,j) + 1
+        temp = palindromePartitioning(arr,i,k) + palindromePartitioning(arr,k+1,j) + 1
 
         _min = min(temp,_min)
 
@@ -59,7 +59,7 @@ def palindromePartioning(arr,i,j):
 
 
 arr = "ababbbabbababa"
-print("palindromePartioning with recursion",palindromePartioning(arr,0,len(arr)-1))
+print("palindromePartitioning with recursion",palindromePartitioning(arr,0,len(arr)-1))
     
 
 #Approach 2: recursive with memoization
@@ -69,7 +69,7 @@ i = 0
 j = len(arr)-1
 mtx = [[-1 for m in range(j+1)] for n in range(j+1)]
 
-def palindromePartioningMemo(arr,i,j):
+def palindromePartitioningMemo(arr,i,j):
 
     #check for boundary conditions
     if i >= j or is_palindrome(arr,i,j):
@@ -84,13 +84,13 @@ def palindromePartioningMemo(arr,i,j):
         if mtx[i][k] != -1:
             left = mtx[i][k]
         else:
-            left = palindromePartioningMemo(arr,i,k)
+            left = palindromePartitioningMemo(arr,i,k)
             mtx[i][k] = left
         
         if mtx[k+1][j] != -1:
             right = mtx[k+1][j]
         else:
-            right = palindromePartioningMemo(arr,k+1,j)
+            right = palindromePartitioningMemo(arr,k+1,j)
             mtx[k+1][j] = right
         temp = 1 + left + right
         _min = min(temp,_min)
@@ -99,7 +99,7 @@ def palindromePartioningMemo(arr,i,j):
 
     return mtx[i][j]
 
-print("palindrome partition with recursion and memoization",palindromePartioningMemo(arr,i,j))
+print("palindrome partition with recursion and memoization",palindromePartitioningMemo(arr,i,j))
 
     
 

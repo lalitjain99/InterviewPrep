@@ -30,7 +30,7 @@ arr = [3, 34, 4, 12, 5, 2]
 sum = 9
 print("bottom up recursive approach ", isSubsetSumRecursive(N,arr,sum))
 
-#top down recursive with memoization
+#Bottom up recursive with memoization
 
 def isSubsetSumRecurMemo(N,arr,sum):
     #initialize a matrix with size (N+1)*(Sum+1)

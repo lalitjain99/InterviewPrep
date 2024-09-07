@@ -73,7 +73,7 @@ def knapSack(W, wt, val, n):
 
 N = 3
 W = 3
-values = [1,2,3]
+values = [5,10,3]
 weight = [4,5,6]
 
 print("recursive approach", knapSack(W,wt=weight,val=values,n=N))
