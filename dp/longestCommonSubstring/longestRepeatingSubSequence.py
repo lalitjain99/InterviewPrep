@@ -36,6 +36,24 @@ We are able to use character 'x'
 as it appears on index 1 in subsequence A 
 and index 0 in subsequence B.
 """
+#Approach 1: Recursion
+
+def longestRepeatingSubSequence(s,idx1,idx2):
+
+    if idx1<0 or idx2<0:
+        return 0
+    
+    if s[idx1] == s[idx2] and idx1!=idx2:
+        return 1 + longestRepeatingSubSequence(s,idx1-1,idx2-1)
+    
+    else:
+        return max(longestRepeatingSubSequence(s,idx1-1,idx2),longestRepeatingSubSequence(s,idx1,idx2-1))
+    
+s = "axxxy"
+n = len(s)
+print("Recursion: Longest Repeating Subsequence is ",longestRepeatingSubSequence(s,n-1,n-1))
+
+
 
 # This problem is just the modification of Longest Common Subsequence problem. The idea is to find the LCS(str, str) where str is the input string with the restriction that when both the characters are same, they shouldn’t be on the same index in the two strings. 
 
@@ -51,3 +69,6 @@ def longest_repeating_subsequence(s):
                 dp[i][j] = max(dp[i][j-1], dp[i-1][j])
 
     return dp[n][n]
+
+s = "axxzxy"
+print("Tabulation: Longest Repeating Subsequence is ",longest_repeating_subsequence(s))

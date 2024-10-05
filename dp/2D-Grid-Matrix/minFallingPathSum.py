@@ -55,7 +55,7 @@ def minFallingPath_memo(matrix,row,col):
     if row > len(matrix)-1:
         return 0
     
-    if dp[row][col] != -1:
+    if dp[row][col] != maxInt:
         return dp[row][col]
     
     dp[row][col] = matrix[row][col] + min(minFallingPath_memo(matrix,row+1,col-1),minFallingPath_memo(matrix,row+1,col),minFallingPath_memo(matrix,row+1,col+1))
@@ -63,7 +63,7 @@ def minFallingPath_memo(matrix,row,col):
     return dp[row][col]
 
 matrix = [[-19,57],[-40,-5]]
-dp = [[-1]*len(matrix)]*len(matrix)
+dp = [[maxInt]*len(matrix)]*len(matrix)
 cost = [-1]*len(matrix)
 for i in range(len(matrix)):
     cost[i] = minFallingPath_memo(matrix,0,i)
@@ -78,9 +78,7 @@ def minFallingPath_tab(matrix):
             return min(matrix[0])
     ans = float('inf')
     for i in range(1,len(matrix)):
-        print(i)
         for j in range(len(matrix)):
-            print("matrix before iteration",matrix)
             down = matrix[i][j] + matrix[i-1][j]
             if j>0:
                 leftDiagonal = matrix[i][j] + matrix[i-1][j-1]
@@ -93,13 +91,12 @@ def minFallingPath_tab(matrix):
                 rightDiagonal = maxInt
 
             matrix[i][j] = min(down,leftDiagonal,rightDiagonal)
-            print("matrix after iteration",matrix)
             if i == (len(matrix)-1):
                 ans = min(ans,matrix[i][j])
 
     return ans
 
-matrix = [[2,1,3],[6,5,4],[7,8,9]]
+matrix = [[-19,57],[-40,-5]]
 print("minimum falling path using recursion with tabulation ",minFallingPath_tab(matrix))
 
 

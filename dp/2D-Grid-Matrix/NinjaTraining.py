@@ -58,7 +58,8 @@ print("Recursion with memoization: Maximum number of training points will be ",N
 
 
 #Approach 3: Tabulation
-
+#Time Complexity : O(N*3)
+#Space Complexity : O(N*3)
 def NinjaTraining_tab(points):
     days  = len(points)
     

@@ -50,4 +50,4 @@ text1 = "AGGTAB"
 n=len(text1)
 text2 = "GXTXAYB"
 m = len(text2)
-print("length of shortest common superstring is",shortestCommonSuperSequence(text1,text2,n,m))
+print("length of shortest common super Sequence is",shortestCommonSuperSequence(text1,text2,n,m))
