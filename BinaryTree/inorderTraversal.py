@@ -35,8 +35,8 @@ The number of nodes in the tree is in the range [0, 100].
 Follow up: Recursive solution is trivial, could you do it iteratively?
 """
 #Approach 1: Recursive Solution
-#Time Complexity: 
-#Space Complexity:
+#Time Complexity: O(N)
+#Space Complexity: O(H) ASS
 
 class TreeNode:
     def __init__(self,val) -> None:
@@ -54,3 +54,27 @@ def inOrderTraversal(self, root: TreeNode) -> list[int]:
             inOrder(node.right)
         inOrder(root)
         return l1
+
+#Approach 2 : Iterative 
+#Time Complexity: O(N)
+#Space Complexity: O(H)
+
+def inOrder(root:TreeNode):
+    if root is None:
+        return []
+    result = []
+    curr = root
+    st = []
+    while True:
+        if curr is not None:
+            st.append(curr)
+            curr = curr.next 
+        else:
+            if not st:
+                break
+            node = st.pop()
+            result.append(node.val)
+            node = node.right 
+    return result
+
+         

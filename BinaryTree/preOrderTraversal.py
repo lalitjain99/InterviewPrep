@@ -5,6 +5,8 @@ class TreeNode:
         self.right = None
 
 #Approach 1: Iterative using single stack
+#Time Complexity: O(N)
+#Space Complexity: O(h) where h is height of the tree 
 def preOrder(root:TreeNode):
     if root is None:
         return []
@@ -20,6 +22,8 @@ def preOrder(root:TreeNode):
     return res
 
 #Approach 2: Recursive
+#Time Complexity: O(N)
+#Space Complexity: O(N) for ASS otherwise O(1)
 def pre_order(root:TreeNode):
     if root is None:
         return

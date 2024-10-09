@@ -19,7 +19,7 @@ Constraints:
 The number of nodes in the tree is in the range [0, 2000].
 -1000 <= Node.val <= 1000
 """
-#Approach 1: 
+#Approach 1: One queue to traverse curr level node and another to store next level nodes
 #Time Complexity: O(N)
 #Space Complexity: O(N)
 class TreeNode:
@@ -49,7 +49,9 @@ def levelOrder(root:TreeNode):
     
     return result
 
-#Approach 2: without using extra space
+#Approach 2: Singe queue to maintain current and next level
+#Time Complexity: O(N)
+#Space Complexity: O(N)
 from collections import deque
 def levelOrder(root:TreeNode):
     if root is None:
